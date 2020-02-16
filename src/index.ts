@@ -1,12 +1,11 @@
 import * as express from "express";
 import App from "./app";
+import router from "./router/main";
 
-const app = new App().application;
-const PORT = process.env.PORT || 4000;
-
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("start");
-});
+const app: express.Application = new App().application;
+const PORT: number = parseInt(process.env.PORT) || 4000;
+// set router
+router(app);
 
 app.listen(PORT, () => {
   console.log(`✅  Server is listening on port ${PORT}!`);
